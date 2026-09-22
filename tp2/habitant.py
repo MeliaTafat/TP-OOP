@@ -1,3 +1,5 @@
+from multipledispatch import dispatch
+
 class Habitant :
     # un constructeur qui permet d'instancier un objet de classe Habitant
     def __init__(self, nom, age, adresse, animaux=None) :
@@ -46,7 +48,15 @@ class Habitant :
     # Methode qui renvoie le nombre d'animaux du type donné possedes pars l habitant 
     def compte_animal(self,animal) :
         return self.get_nombre(animal)
-    
+# Fonction set_info
+@dispatch(object, str)
+def set_info(habitant, nom):
+    habitant.__habitant__nom = nom
+@dispatch(object, str, int) 
+def set_info(habitant, nom, age):
+        habitant.__Habitant__nom = nom 
+        habitant.__Habitant__age = age
+
 h1 = Habitant("Aldric", 25, "Rue A", {"vaches": 3})
 assert h1.get_nom() == "Aldric"
 assert h1.compte_animal("vaches") == 3
@@ -59,3 +69,7 @@ try:
     assert False, "une ValueError aurait du etre levee"
 except ValueError:
     pass
+
+h2 = Habitant("Bob", 40, "Rue C")
+set_info(h2, "Robert") 
+set_info(h2, "Robert", 41)
