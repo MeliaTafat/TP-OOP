@@ -1,4 +1,5 @@
 from habitant import Habitant
+from personnes import Adulte
 
 class Village() :
     # un constructeur qui permet d'instancier un objet de classe Village
@@ -11,7 +12,7 @@ class Village() :
         return self.habitants 
           
     # Methode pour ajouter un habitant a la liste 
-    def ajouter_habitant_composition(self, nom, age, adresse, animaux=None):
+    def ajouter_habitant_composition(self, nom, prenom, age, adresse, animaux=None):
         """Cree un nouvel Habitant et l'ajoute au village ."""
         habitant = Adulte(nom, prenom, age, adresse, animaux)
         self.habitants.append(habitant)
