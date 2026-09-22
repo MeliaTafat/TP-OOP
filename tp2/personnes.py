@@ -25,11 +25,13 @@ class Enfant(Habitant):
     
 
 adulte = Adulte("Dupont", "Marie", 35, "Rue A")
+enfant = Enfant("Martin", "Lucas", 12, "Rue B")
 assert isinstance(adulte, Habitant)
 assert adulte.calcul_nombre_annee_avant_retraite() == 27
 assert "enfant" in enfant.calcul_nombre_annee_avant_retraite()
 try:
-    Enfant("Oups", 25, "Rue C")
+    Enfant("Oups", " X", 25, "Rue C")
     assert False, "une ValueError aurait du etre levee"
 except ValueError:
     pass
+print(adulte)

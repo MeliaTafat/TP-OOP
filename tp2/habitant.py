@@ -54,6 +54,9 @@ class Habitant (ABC) :
     def calcul_nombre_annee_avant_retraite(self) :
         pass
     
+    def __str__(self):
+        return f"{self.prenom} {self.get_nom()}, {self.age} ans, habite a {self.get_adresse()}"
+    
     
 # Fonction set_info
 @dispatch(object, str)
@@ -68,22 +71,22 @@ def set_info(habitant, nom, age):
 
 
 
-h1 = Habitant("Aldric", 25, "Rue A", {"vaches": 3})
-assert h1.get_nom() == "Aldric"
-assert h1.compte_animal("vaches") == 3
-assert h1.compte_animal("moutons") == 0
-h1.affichage_adresse()
-h1.age = 26
-assert h1.age == 26
-try:
-    h1.age = -5
-    assert False, "une ValueError aurait du etre levee"
-except ValueError:
-    pass
+#h1 = Habitant("Aldric", 25, "Rue A", {"vaches": 3})
+#assert h1.get_nom() == "Aldric"
+#assert h1.compte_animal("vaches") == 3
+#assert h1.compte_animal("moutons") == 0
+#h1.affichage_adresse()
+#h1.age = 26
+#assert h1.age == 26
+#try:
+    #h1.age = -5
+    #assert False, "une ValueError aurait du etre levee"
+#except ValueError:
+    #pass
 
-h2 = Habitant("Bob", 40, "Rue C")
-set_info(h2, "Robert") 
-set_info(h2, "Robert", 41)
+#h2 = Habitant("Bob", 40, "Rue C")
+#set_info(h2, "Robert") 
+#set_info(h2, "Robert", 41)
 
 # Verifier qu'il impossible d'instancier HAbitant directemnt
 try:
