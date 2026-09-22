@@ -1,6 +1,6 @@
 from multipledispatch import dispatch
-
-class Habitant :
+from abc import ABC, abstractmethod
+class Habitant (ABC) :
     # un constructeur qui permet d'instancier un objet de classe Habitant
     def __init__(self, nom, age, adresse, animaux=None) :
             self.__nom = nom 
@@ -48,6 +48,13 @@ class Habitant :
     # Methode qui renvoie le nombre d'animaux du type donné possedes pars l habitant 
     def compte_animal(self,animal) :
         return self.get_nombre(animal)
+    
+    # Methode abstarite
+    @abstractmethod
+    def calcul_nombre_annee_avant_retraite(self) :
+        pass
+    
+    
 # Fonction set_info
 @dispatch(object, str)
 def set_info(habitant, nom):
@@ -56,6 +63,10 @@ def set_info(habitant, nom):
 def set_info(habitant, nom, age):
         habitant.__Habitant__nom = nom 
         habitant.__Habitant__age = age
+
+
+
+
 
 h1 = Habitant("Aldric", 25, "Rue A", {"vaches": 3})
 assert h1.get_nom() == "Aldric"
@@ -73,3 +84,10 @@ except ValueError:
 h2 = Habitant("Bob", 40, "Rue C")
 set_info(h2, "Robert") 
 set_info(h2, "Robert", 41)
+
+# Verifier qu'il impossible d'instancier HAbitant directemnt
+try:
+    h_test = Habitant("Melia", 30, "Rue B")
+    assert False, "une TypeError aurait du etre levee"
+except TypeError:
+    pass
