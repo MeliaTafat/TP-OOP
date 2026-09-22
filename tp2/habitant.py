@@ -56,7 +56,8 @@ class Habitant (ABC) :
     
     def __str__(self):
         return f"{self.prenom} {self.get_nom()}, {self.age} ans, habite a {self.get_adresse()}"
-    
+def affichage(h : Habitant) :
+    print(str(h))
     
 # Fonction set_info
 @dispatch(object, str)

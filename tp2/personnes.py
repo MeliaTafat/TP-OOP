@@ -1,4 +1,4 @@
-from habitant import Habitant
+from habitant import Habitant, affichage
 class Adulte(Habitant) :
      # un constructeur qui permet d'instancier un objet de classe Adulte
     def __init__(self, nom, prenom, age, adresse, animaux=None):
@@ -34,4 +34,5 @@ try:
     assert False, "une ValueError aurait du etre levee"
 except ValueError:
     pass
-print(adulte)
+
+affichage(adulte)
