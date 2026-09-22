@@ -36,3 +36,9 @@ except ValueError:
     pass
 
 affichage(adulte)
+affichage(enfant)
+
+#Question 8.3 :
+#Rendre la méthode abstraite oblige chaque sous-classe à l'implémenter avant de pouvoir être instanciée,
+# garantissant ainsi que tout objet passé à affichage aura un comportement réel plutôt qu'un pass 
+# silencieusement hérité.

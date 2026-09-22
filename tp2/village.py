@@ -1,4 +1,5 @@
 from habitant import Habitant
+
 class Village() :
     # un constructeur qui permet d'instancier un objet de classe Village
     def __init__(self , nom) : 
@@ -12,7 +13,7 @@ class Village() :
     # Methode pour ajouter un habitant a la liste 
     def ajouter_habitant_composition(self, nom, age, adresse, animaux=None):
         """Cree un nouvel Habitant et l'ajoute au village ."""
-        habitant = Habitant(nom, age, adresse, animaux)
+        habitant = Adulte(nom, prenom, age, adresse, animaux)
         self.habitants.append(habitant)
         
     def ajouter_habitant_agregation(self, habitant) :
@@ -24,14 +25,18 @@ class Village() :
         for habitant in self.habitants :
             print( f"{habitant}")
             
-pytown = Village("PyTown")
-pytown.ajouter_habitant_composition("Aldric", 25, "Rue A", {"vaches": 3})
-elise = Habitant("Elise", 28, "Rue B", {"poules": 10})
-pytown.ajouter_habitant_agregation(elise)
-autre_village = Village("VillageVoisin")
-autre_village.ajouter_habitant_agregation(elise) # meme habitant dans 2 villages
-assert len(pytown.get_habitants()) == 2
-assert elise in autre_village.get_habitants()
+if __name__ == "__main__":
+    pytown = Village("PyTown")
+    pytown.ajouter_habitant_composition("Aldric", "Aldric", 25, "Rue A", {"vaches": 3})
+    elise = Adulte("Elise", "Elise", 28, "Rue B", {"poules": 10})
+    pytown.ajouter_habitant_agregation(elise)
+
+    autre_village = Village("VillageVoisin")
+    autre_village.ajouter_habitant_agregation(elise)
+
+    assert len(pytown.get_habitants()) == 2
+    assert elise in autre_village.get_habitants()
+    print("Tests village OK")
 
 # ajouter_habitant_composition illustre une relation de composition car le Village
 # cree lui-meme l'objet Habitant : ce dernier n'existe pas avant l'appel et n'a
