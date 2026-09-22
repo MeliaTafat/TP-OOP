@@ -2,10 +2,17 @@ class Habitant :
     # un constructeur qui permet d'instancier un objet de classe Habitant
     def __init__(self, nom, age, adresse, animaux=None) :
             self.__nom = nom 
-            self.__age = age
+            self.age = age
             self.__adresse = adresse
             self.__animaux = animaux if animaux is not None else {}
-    
+    @property
+    def age(self) :
+        return self.__age
+    @age.setter
+    def age(self, valeur) :
+        if valeur <0 or valeur > 130 :
+            raise ValueError("lage ne dois pas etre negatif ou superieur à 130")
+        self.__age= valeur
     # Accesseurs
     def get_nom(self) :
         return self.__nom
@@ -45,4 +52,10 @@ assert h1.get_nom() == "Aldric"
 assert h1.compte_animal("vaches") == 3
 assert h1.compte_animal("moutons") == 0
 h1.affichage_adresse()
-        
+h1.age = 26
+assert h1.age == 26
+try:
+    h1.age = -5
+    assert False, "une ValueError aurait du etre levee"
+except ValueError:
+    pass
