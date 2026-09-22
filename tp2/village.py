@@ -32,3 +32,10 @@ autre_village = Village("VillageVoisin")
 autre_village.ajouter_habitant_agregation(elise) # meme habitant dans 2 villages
 assert len(pytown.get_habitants()) == 2
 assert elise in autre_village.get_habitants()
+
+# ajouter_habitant_composition illustre une relation de composition car le Village
+# cree lui-meme l'objet Habitant : ce dernier n'existe pas avant l'appel et n'a
+# de sens que rattache a ce village precis .
+# ajouter_habitant_agregation illustre au contraire une agregation : le Village
+# recoit un objet Habitant qui existe deja independamment de lui, et peut donc
+# appartenir a plusieurs villages en meme temps.
