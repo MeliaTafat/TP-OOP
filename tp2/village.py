@@ -1,0 +1,34 @@
+from habitant import Habitant
+class Village() :
+    # un constructeur qui permet d'instancier un objet de classe Village
+    def __init__(self , nom) : 
+        self.nom = nom
+        self.habitants =[]
+    
+    # Accesseurs
+    def get_habitants(self):
+        return self.habitants 
+          
+    # Methode pour ajouter un habitant a la liste 
+    def ajouter_habitant_composition(self, nom, age, adresse, animaux=None):
+        """Cree un nouvel Habitant et l'ajoute au village ."""
+        habitant = Habitant(nom, age, adresse, animaux)
+        self.habitants.append(habitant)
+        
+    def ajouter_habitant_agregation(self, habitant) :
+        """Ajoute un Habitant deja existant au village."""
+        self.habitants.append(habitant)
+    
+    #Methode qui affiche chaque habitant du village
+    def afficher_habitants(self) :
+        for habitant in self.habitants :
+            print( f"{habitant}")
+            
+pytown = Village("PyTown")
+pytown.ajouter_habitant_composition("Aldric", 25, "Rue A", {"vaches": 3})
+elise = Habitant("Elise", 28, "Rue B", {"poules": 10})
+pytown.ajouter_habitant_agregation(elise)
+autre_village = Village("VillageVoisin")
+autre_village.ajouter_habitant_agregation(elise) # meme habitant dans 2 villages
+assert len(pytown.get_habitants()) == 2
+assert elise in autre_village.get_habitants()
